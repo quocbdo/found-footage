@@ -5,10 +5,10 @@ var listSchema = new Schema({
     name: {type: String, required: true},
     movies: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
     summary: String,
-    avgMovieRarting: Number,
+    avgMovieRating: Number,
     genre: {
         type: String,
-        enum: ['General', 'Sci-Fi', 'Action/Adventure','Comendy', 'Romance', 'Thriller', 'Drama']
+        enum: ['General', 'Sci-Fi', 'Action/Adventure','Comedy', 'Romance', 'Thriller', 'Drama']
     }
     }, {
         timestamps: true
