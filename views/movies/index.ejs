@@ -1,0 +1,10 @@
+<%- include ../_partials/header.ejs %>
+
+<h1>Movies</h1>
+
+<% moviesData.forEach(function(movie){ %>
+  <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
+  <h6><%= movie.title %></h6>
+<% }) %>
+
+<%- include ../_partials/footer.ejs %>
