@@ -5,7 +5,7 @@ const rootURL = 'https://api.themoviedb.org/3/';
 function index(req, res) {
     var options = {
         url: rootURL + 'discover/movie?sort_by=popularity.desc&api_key=' + process.env.TMDB_KEY  
-    }
+    };
     request(options, function(err, response, body) {
         var moviesData = JSON.parse(body);
         moviesData = moviesData.results;
@@ -14,7 +14,13 @@ function index(req, res) {
 }
 
 function show(req, res) {
-
+    var options =  {
+        url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY
+    };
+    request(options, function(err,response, body) {
+        var movieData = JSON.parse(body);
+        res.render('movies/show', {movieData});
+    });
 }
 
 function create(req, res) {
