@@ -15,11 +15,11 @@ function index(req, res) {
 
 function show(req, res) {
     var options =  {
-        url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY
+        url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY + '&append_to_response=credits'
     };
     request(options, function(err,response, body) {
         var movieData = JSON.parse(body);
-        res.render('movies/show', {movieData});
+        res.render('movies/show', {movieData, user: req.user});
     });
 }
 
