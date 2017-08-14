@@ -1,0 +1,36 @@
+<%- include ../_partials/header.ejs %>
+
+<form action="/users/<%= user._id %>/lists" method="post">
+    <div>
+        <label>Title:</label>
+        <input type="text" name="name">
+    </div>
+    <div>
+        <label>Summary:</label>
+        <input type="text" name="summary">
+    </div>
+
+    <div class="input-field col s12">
+        <select name="genre">
+            <option value="General">General</option>
+            <option value="Action">Action</option>
+            <option value="Animated">Animated</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Drama">Drama</option>
+            <option value="Family">Family</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="History">History</option>
+            <option value="Horrow">Horror</option>
+            <option value="Music">Music</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Thriller">Thriller</option>
+            <option value="War">War</option>
+        </select>
+        <label>Genre:</label>
+    </div>
+  
+  <input type="submit" value="Create List" class="waves-effect waves-light btn">
+</form>
+<%- include ../_partials/footer.ejs %>
