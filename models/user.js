@@ -5,7 +5,7 @@ var userSchema = new mongoose.Schema({
     name: String,
     email: String,
     googleId: String,
-    list: [{type: Schema.Types.ObjectId, ref: 'List'}]
+    lists: [{type: Schema.Types.ObjectId, ref: 'List'}]
 }, {
     timestamps: true
 })

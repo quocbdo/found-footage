@@ -8,12 +8,10 @@ var listSchema = new Schema({
     avgMovieRating: Number,
     genre: {
         type: String,
-        enum: ['General', 'Sci-Fi', 'Action','Comedy', 'Romance', 'Thriller', 'Drama', 'Adventure', 'Animation', 'Documentary', 'Crime', 'Family',
-                'Fantasy', 'Horror', 'Music', 'History', 'War', 'Mystery']
+        enum: ['General', 'Sci-Fi', 'Action','Comedy', 'Romance', 'Thriller', 'Drama', 'Adventure', 'Animation',              'Documentary', 'Crime', 'Family', 'Fantasy', 'Horror', 'Music', 'History', 'War', 'Mystery']
     }
-    }, {
-        timestamps: true
-    }
-);
+}, {
+    timestamps: true
+});
 
 module.exports = mongoose.model('List', listSchema)
