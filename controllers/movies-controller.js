@@ -17,7 +17,7 @@ function show(req, res) {
     var options =  {
         url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY + '&append_to_response=credits'
     };
-    request(options, function(err,response, body) {
+    request(options, function(err, response, body) {
         var movieData = JSON.parse(body);
         res.render('movies/show', {movieData, user: req.user});
     });
@@ -27,8 +27,21 @@ function create(req, res) {
 
 }
 
+function search(req, res) {
+    var options = {
+        url: rootURL + 'search/movie?api_key=' + process.env.TMDB_KEY + "&query=" + req.body.search
+    };
+    request(options, function(err, response, body) {
+        var movieSearch = JSON.parse(body);
+        movieSearch = movieSearch.results;
+        console.log(body);
+        res.render('movies/search', {movieSearch, user: req.user})
+    })
+}
+
 module.exports = {
     index,
     show,
-    create
+    create,
+    search
 }
