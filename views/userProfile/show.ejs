@@ -1,0 +1,18 @@
+<%- include ../_partials/header.ejs %>
+
+<h4><%= user.name %></h4>
+
+<h5>My Featured Movie Lists</h5>
+  <% if (user.list.length) { %>
+    <% user.list.forEach(list => { %>
+      <div class="list-item">
+        <label><%= list.name %></label>
+      </div>
+      <% }) %>
+        <% } else { %>
+      <h6>No lists created</h6>
+      <% } %>
+      <p>Create New Movie List</p>
+        <a href="/users/<%= user._id %>/lists/new" class="btn-floating btn-large waves-effect waves-light red"><class="material-icons">+</a>
+    
+<%- include ../_partials/footer.ejs %>
