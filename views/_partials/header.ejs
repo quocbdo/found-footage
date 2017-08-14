@@ -21,6 +21,18 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo">Found Footage</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li>
+                <form method="post" action="/movies/search">
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control"
+                      placeholder="Movie">
+                    <span class="input-group-btn">
+                      <button class="btn btn-success"
+                        type="submit">Search</button>
+                    </span>
+                  </div>
+                </form>
+              </li>
             <% if (user) { %>
               <li><a href="/logout">Logout</a></li>
               <li><a href="#"><%= user.name %></a></li>
