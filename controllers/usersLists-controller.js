@@ -1,5 +1,6 @@
-var List = ('../models/list');
-var Movie = ('../models/movie');
+var List = require('../models/list');
+var Movie = require('../models/movie');
+var User = require('../models/user');
 
 function index(req, res) {
     List.find({}, (err, lists) => {
@@ -13,6 +14,12 @@ function show(req, res) {
 
 function create(req, res) {
     var list = new List(req.body);
+    list.save((err, list) => {
+        req.user.lists.push(list.id);
+        req.user.save(() => {
+            res.redirect('/users/' + req.user.id);
+        });
+    });
 }
 
 function newList(req, res) {

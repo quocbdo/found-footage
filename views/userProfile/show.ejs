@@ -3,8 +3,8 @@
 <h4><%= user.name %></h4>
 
 <h5>My Featured Movie Lists</h5>
-  <% if (user.list.length) { %>
-    <% user.list.forEach(list => { %>
+  <% if (user.lists.length) { %>
+    <% user.lists.forEach(list => { %>
       <div class="list-item">
         <label><%= list.name %></label>
       </div>
