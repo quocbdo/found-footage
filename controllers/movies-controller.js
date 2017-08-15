@@ -1,4 +1,5 @@
 var Movie = require('../models/movie');
+var User = require('../models/user');
 var request = require('request');
 const rootURL = 'https://api.themoviedb.org/3/';
 
@@ -19,7 +20,11 @@ function show(req, res) {
     };
     request(options, function(err, response, body) {
         var movieData = JSON.parse(body);
-        res.render('movies/show', {movieData, user: req.user});
+        User.findById(req.user.id).populate("lists").exec(function(err, user){
+            console.log(user);
+            res.render('movies/show', {movieData, user: user});
+        
+        })
     });
 }
 

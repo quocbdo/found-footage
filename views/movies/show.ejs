@@ -1,19 +1,29 @@
 <%- include ../_partials/header.ejs %>
 
 <h1><%= movieData.title %></h1>
+<img src="https://image.tmdb.org/t/p/w150/<%= movieData.poster_path %>">
+  <form action="/users/<%= user._id %>/lists/addtolist" method="POST">
+    <select name="list">
+      <% user.lists.forEach(function(list){ %>
+        <option value="<%= list._id %>"><%= list.name %></option>
+      <% }) %>
+    </select>
+    <input type="hidden" name="movieId" value="<%= movieData.id %>">
+    <button type="submit">Add to List</button>
+  </form>
 
-  <img src="https://image.tmdb.org/t/p/w150/<%= movieData.poster_path%>">
-  <h6>Overview:</h6>
-  <p><%= movieData.release_date %></p>
-  <% movieData.genres.forEach(function(genre){ %>
-    <p><%= genre.name %></p>
-  <% }) %>
-  <p><%= movieData.overview %></p>
-  <% for(var i = 0; i < 5; i++) { %>
-    <p><%= movieData.credits.cast[i].name %></p>
-  <% } %>
+    
+<h6>Overview:</h6>
+<p><%= movieData.release_date %></p>
+<% movieData.genres.forEach(function(genre){ %>
+  <p><%= genre.name %></p>
+<% }) %>
+<p><%= movieData.overview %></p>
+<% for(var i = 0; i < 5; i++) { %>
+  <p><%= movieData.credits.cast[i].name %></p>
+<% } %>
 
-  <p><%= movieData.vote_average %></p>
+<p><%= movieData.vote_average %></p>
   
 
 <%- include ../_partials/footer.ejs %>
