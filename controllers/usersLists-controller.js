@@ -40,7 +40,7 @@ function updateList(req, res) {
 function deleteList(req, res) {
     List.findById(req.params.id, function(err, list) {
         list.remove();
-        res.redirect('/lists');
+        res.redirect('/users/' + req.user.id);
     });
 }
 

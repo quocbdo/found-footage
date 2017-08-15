@@ -6,7 +6,10 @@
   <% if (user.lists.length) { %>
     <% user.lists.forEach(list => { %>
       <div class="list-item">
-       <a href="/users/<%= user._id %>/lists/<%= list.id %>"><label><%= list.name %></label></a> 
+       <a href="/users/<%= user._id %>/lists/<%= list.id %>"><label><h4><%= list.name %><h4></label></a> 
+         <form action="/users/<%= user.id %>/lists/<%= list.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-lg btn-danger"> Remove List </button>
+         </form>
       </div>
       <% }) %>
         <% } else { %>
