@@ -6,7 +6,7 @@
   <% if (user.lists.length) { %>
     <% user.lists.forEach(list => { %>
       <div class="list-item">
-        <h5><%= list.name %></h5>
+       <a href="/users/<%= user._id %>/lists/<%= list.id %>"><label><%= list.name %></label></a> 
       </div>
       <% }) %>
         <% } else { %>

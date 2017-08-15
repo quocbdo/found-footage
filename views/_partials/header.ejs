@@ -23,19 +23,15 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down">
               <li>
                 <form method="post" action="/movies/search">
-                  <div class="input-group">
-                    <input type="text" name="search" class="form-control"
-                      placeholder="Movie">
-                    <span class="input-group-btn">
-                      <button class="btn btn-success"
-                        type="submit">Search</button>
-                    </span>
+                  <div class>
+                    <input type="text" name="search"
+                      placeholder="Search Movie">
                   </div>
                 </form>
               </li>
             <% if (user) { %>
               <li><a href="/logout">Logout</a></li>
-              <li><a href="#"><%= user.name %></a></li>
+              <li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
             <% } else { %>
               <li><a href="/auth/google">Login with Google</a></li>
             <% } %>
