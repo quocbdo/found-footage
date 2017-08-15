@@ -1,12 +1,12 @@
 <%- include ../_partials/header.ejs %>
 
-<h4><%= user.name %></h4>
+<h5><%= user.name %></h5>
 
-<h5>My Featured Movie Lists</h5>
+<h6>My Featured Movie Lists</h6>
   <% if (user.lists.length) { %>
     <% user.lists.forEach(list => { %>
       <div class="list-item">
-        <label><%= list.name %></label>
+        <h5><%= list.name %></h5>
       </div>
       <% }) %>
         <% } else { %>
