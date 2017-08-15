@@ -14,29 +14,28 @@ $(document).ready(function() {
 
     $('.chips-autocomplete').material_chip({
         autocompleteOptions: {
-        data: {
-            'General': null,
-            'Action':null,
-            'Adventure': null,
-            'Animation': null,
-            'Comedy': null,
-            'Crime': null,
-            'Documentary': null,
-            'Drama': null,
-            'Family': null,
-            'Fantasy': null,
-            'History': null,
-            'Horror': null,
-            'Romance': null,
-            'Music': null,
-            'Mystery': null,
-            'Thriller': null,
-            'Sci-Fi': null,
-            'War': null
-        },
-        limit: Infinity,
-        minLength: 1
+            data: {
+                'General': null,
+                'Action':null,
+                'Adventure': null,
+                'Animation': null,
+                'Comedy': null,
+                'Crime': null,
+                'Documentary': null,
+                'Drama': null,
+                'Family': null,
+                'Fantasy': null,
+                'History': null,
+                'Horror': null,
+                'Romance': null,
+                'Music': null,
+                'Mystery': null,
+                'Thriller': null,
+                'Sci-Fi': null,
+                'War': null
+            },
+            limit: Infinity,
+            minLength: 1
         }
-    });
-       
+    });   
 });

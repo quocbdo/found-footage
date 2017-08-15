@@ -34,7 +34,6 @@ function search(req, res) {
     request(options, function(err, response, body) {
         var movieSearch = JSON.parse(body);
         movieSearch = movieSearch.results;
-        console.log(body);
         res.render('movies/search', {movieSearch, user: req.user})
     })
 }
