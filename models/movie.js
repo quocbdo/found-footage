@@ -7,7 +7,7 @@ var movieSchema = new mongoose.Schema({
     overview: String,
     cast: [String],
     release_date: String,
-    genre: [String],
+    genres: [String],
     vote_average: Number
 });
 
