@@ -21,52 +21,56 @@
 
 <script>
     $(document).ready(function() {
-    $('#list-name').click(function(){
-        $(this).replaceWith(`<input id="input-name" type="text" name="name" value="<%= list.name %>">`);
-        $('#input-name').on("blur", function(e){
-            console.log('on blur')
-            var newName = $('#input-name').val();
-            let xBody = JSON.stringify({
-                name: newName, 
-                userId: "<%= user.id %>"
+        $('#list-name').click(function(){
+            $(this).replaceWith(`<input id="input-name" type="text" name="name" value="<%= list.name %>">`);
+            $('#input-name').on("keypress blur", function(evt){
+                if (evt.keyCode === 13 || evt.type === 'blur') updateListName();
             })
+        })
 
-            console.log(xBody)
-            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
-                {
-                    method: "POST", 
-                    body: xBody,
-                    credentials: 'include',
-                    headers: new Headers({
-                        'Content-Type': 'application/JSON'
-                    })
-                })
+        $('#list-summary').click(function(){
+            $(this).replaceWith(`<textarea id="input-summary" class="materialize-textarea" type="text" name="name" value="<%= list.summary %>"><%= list.summary %></textarea>`);
+            $('#input-summary').on("blur", function(evt){
+                if (evt.keyCode === 13 || evt.type === 'blur') updateSummary();
+            })
         })
     })
-    $('#list-summary').click(function(){
-        $(this).replaceWith(`<textarea id="input-summary" class="materialize-textarea" type="text" name="name" value="<%= list.summary %>"><%= list.summary %></textarea>`);
-        $('#input-summary').on("blur", function(e){
-            console.log('on blur')
-            var newSummary = $('#input-summary').val();
-            let xBody = JSON.stringify({
-                summary: newSummary, 
-                userId: "<%= user.id %>"
-            })
 
-            console.log(xBody)
-            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
-                {
-                    method: "POST", 
-                    body: xBody,
-                    credentials: 'include',
-                    headers: new Headers({
-                        'Content-Type': 'application/JSON'
-                    })
-                })
-
+    function updateListName() {
+        var newName = $('#input-name').val();
+        let xBody = JSON.stringify({
+            name: newName, 
+            userId: "<%= user.id %>"
         })
-    })
-})    
+        fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
+            {
+                method: "POST", 
+                body: xBody,
+                credentials: 'include',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+        $('#input-name').replaceWith(`<h2 id="list-name">${newName}</h2>`)
+    }
+
+    function updateSummary() {
+        var newSummary = $('#input-summary').val();
+        let xBody = JSON.stringify({
+            summary: newSummary, 
+            userId: "<%= user.id %>"
+        })
+        fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
+            {
+                method: "POST", 
+                body: xBody,
+                credentials: 'include',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            })
+        $('#input-summary').replaceWith(`<h3 id="list-summary">${newSummary}</h3>`)
+    }
 </script>
 
 <%- include ../_partials/footer.ejs %>
