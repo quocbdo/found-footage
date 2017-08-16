@@ -34,7 +34,14 @@ function newList(req, res) {
 }
 
 function updateList(req, res) {
- 
+    console.log('\n\nhello!')
+    console.log('req.params.id =', req.params.id)
+    console.log('req.body =', req.body)
+    
+    // console.log(req.body);
+    List.findByIdAndUpdate(req.params.id, req.body, (err, list) => {
+        res.redirect('/users/' + req.body.userId + '/lists/' + list.id);
+    })
 }
 
 function deleteList(req, res) {
