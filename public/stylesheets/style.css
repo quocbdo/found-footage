@@ -5,3 +5,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.slider {
+  font-family: 'Abel', sans-serif;  
+}
+
+.material-icons {
+  font-size: 50pt;
+}
