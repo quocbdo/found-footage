@@ -16,13 +16,12 @@ function show(req, res) {
     });   
 }
 
-
-
 function create(req, res) {
     console.log(req.body);
     var newList = new List(req.body);
+    newList.user = req.user.id;
     newList.save((err, list) => {
-        console.log(newList);
+        console.log(list);
         req.user.lists.push(list.id);
         req.user.save(() => {
             res.redirect('/users/' + req.user.id);
@@ -48,7 +47,12 @@ function updateList(req, res) {
 function deleteList(req, res) {
     List.findById(req.params.id, function(err, list) {
         list.remove();
-        res.redirect('/users/' + req.user.id);
+        User.findById(req.user.id, (err, user) => {
+            user.lists.remove(req.params.id);
+            user.save(() => {
+                res.redirect('/users/' + req.user.id);
+            });
+        });
     });
 }
 

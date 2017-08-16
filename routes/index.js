@@ -26,6 +26,6 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-router.post('/random', indexCtrl.random);
+router.get('/random', indexCtrl.random);
 
 module.exports = router;
