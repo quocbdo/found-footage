@@ -7,5 +7,4 @@ router.get('/:id', movieCtrl.show);
 router.post('/search', movieCtrl.search);
 router.post('/', movieCtrl.create);
 
-
 module.exports = router;

@@ -11,7 +11,7 @@ function random(req, res) {
         console.log(randomList);
         List.findById(randomList.id).populate("user movies").exec((err, results) => {
             console.log(results);
-            res.render('random', {list: results, user: results.user});
+            res.render('random', {list: results, user: req.user});
         })
     });
 }
