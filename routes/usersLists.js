@@ -7,7 +7,8 @@ router.get('/new', usersListCtrl.new);
 router.get('/:id', usersListCtrl.show);
 router.post('/', usersListCtrl.create);
 router.post('/addtolist', usersListCtrl.add);
-router.put('/:id', usersListCtrl.update);
+
+router.post('/:id', usersListCtrl.update);
 router.delete('/:id', usersListCtrl.delete);
 
 module.exports = router;
