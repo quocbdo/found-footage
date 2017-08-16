@@ -11,11 +11,8 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    List.findById(req.params.id).populate('movies').exec((err, list) => {
-        console.log(list);
-        
+    List.findById(req.params.id).populate('movies').exec((err, list) => { 
         res.render('usersList/show', {list, user: req.user});
-
     });   
 }
 
@@ -81,8 +78,8 @@ function addToList(req, res) {
             })
         })
         
-        checkDb.then(function(added) {
-            if(added) {
+        checkDb.then(function(newMovie) {
+            if(newMovie) {
                 console.log("Save and add to list");
                 var movie = new Movie({tmdb: movieData.id,
                                     title: movieData.title, 
