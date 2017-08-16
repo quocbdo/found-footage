@@ -13,17 +13,25 @@
   </form>
 
     
-<h6>Overview:</h6>
-<p><%= movieData.release_date %></p>
-<% movieData.genres.forEach(function(genre){ %>
+<h6>Release Date:</h6>
+  <p><%= movieData.release_date %></p>
+<h6>Genres:</h6>
+  <% movieData.genres.forEach(function(genre){ %>
   <p><%= genre.name %></p>
 <% }) %>
+<h6>Synopsis</h6>
 <p><%= movieData.overview %></p>
-<% for(var i = 0; i < 5; i++) { %>
+<h6>Cast: </h6>
+<% if (movieData.credits.cast.length < 5){ %>
+  <% var numCast = movieData.credits.cast.length %>
+<% } else { %>
+  <% var numCast = 5 %>
+<% } %>
+<% for(var i = 0; i < numCast; i++) { %>
   <p><%= movieData.credits.cast[i].name %></p>
 <% } %>
 
-<p><%= movieData.vote_average %></p>
+<p>Average Score: <%= movieData.vote_average %></p>
   
 
 <%- include ../_partials/footer.ejs %>
