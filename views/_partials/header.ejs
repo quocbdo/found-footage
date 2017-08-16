@@ -33,12 +33,17 @@
                   </div>
                 </form>
               </li>
-            <% if (user) { %>
-              <li><a href="/logout">Logout</a></li>
-              <li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
-            <% } else { %>
-              <li><a href="/auth/google">Login with Google</a></li>
-            <% } %>
+              <ul id="dropdown1" class="dropdown-content">
+              <% if (user) { %>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
+              <% } else { %>
+                <li><a href="/auth/google">Login with Google</a></li>
+              <% } %>
+              </ul>
+              <nav>
+                <li><a class="dropdown-button" data-activates="dropdown1">Drop it<a></li>
+              </nav>
           </ul>
         </div>
       </nav>
