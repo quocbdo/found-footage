@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var movieSchema = new mongoose.Schema({
+var movieSchema = new Schema({
     tmdb: Number,
     title: {type: String, required: true},
     overview: String,
