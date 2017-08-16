@@ -6,7 +6,7 @@ const rootURL = 'https://api.themoviedb.org/3/';
 
 function index(req, res) {
     List.find({}, (err, lists) => {
-        res.render('lists/index')
+        res.render('userslist/index')
     });
 }
 
@@ -18,10 +18,18 @@ function show(req, res) {
 
     });   
 }
+function random(req, res) {
+    List.findById(Math.floor(Math.random( )* list.length))
+    console.log(list);
+    res.render('usersList/show');
+}
+
 
 function create(req, res) {
-    var list = new List(req.body);
-    list.save((err, list) => {
+    console.log(req.body);
+    var newList = new List(req.body);
+    newList.save((err, list) => {
+        console.log(newList);
         req.user.lists.push(list.id);
         req.user.save(() => {
             res.redirect('/users/' + req.user.id);
@@ -121,6 +129,7 @@ module.exports = {
     index,
     show,
     create,
+    random,
     update: updateList,
     delete: deleteList,
     new: newList,
