@@ -10,7 +10,7 @@
             <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
             <h4><%= movie.title %></h4></a>
         </div>
-            <h6>Synopsis: <%= movie.overview %></h6>
+            <p>Synopsis: <%= movie.overview %></p>
             <h6>Genre: <%= movie.genres %></h6>
             <h6>Release Date: <%= movie.release_date %></h6>
         <% }) %>
@@ -18,6 +18,7 @@
   <form action="/users/<%= user.id %>/lists/<%= list.id %>?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-lg btn-danger"> Remove List </button>
   </form>
+
 <script>
     $(document).ready(function() {
     $('#list-name').click(function(){
@@ -31,20 +32,19 @@
             })
 
             console.log(xBody)
-            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',  // needs an id
+            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
                 {
                     method: "POST", 
-                    body: xBody, // for some reason this body isn't getting passed?
+                    body: xBody,
                     credentials: 'include',
                     headers: new Headers({
                         'Content-Type': 'application/JSON'
                     })
                 })
-
         })
     })
     $('#list-summary').click(function(){
-        $(this).replaceWith(`<input id="input-summary" type="text area" name="name" value="<%= list.summary %>">`);
+        $(this).replaceWith(`<textarea id="input-summary" class="materialize-textarea" type="text" name="name" value="<%= list.summary %>"><%= list.summary %></textarea>`);
         $('#input-summary').on("blur", function(e){
             console.log('on blur')
             var newSummary = $('#input-summary').val();
@@ -54,10 +54,10 @@
             })
 
             console.log(xBody)
-            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',  // needs an id
+            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
                 {
                     method: "POST", 
-                    body: xBody, // for some reason this body isn't getting passed?
+                    body: xBody,
                     credentials: 'include',
                     headers: new Headers({
                         'Content-Type': 'application/JSON'

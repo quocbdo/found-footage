@@ -7,7 +7,7 @@ var listSchema = new Schema({
     summary: String,
     avgMovieRating: Number,
     genre: {
-        type: String,
+        type: [String],
         enum: ['General', 'Sci-Fi', 'Action','Comedy', 'Romance', 'Thriller', 'Drama', 'Adventure', 'Animation', 'Documentary', 'Crime', 'Family', 'Fantasy', 'Horror', 'Music', 'History', 'War', 'Mystery']
     }
 }, {
