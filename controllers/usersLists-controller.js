@@ -44,6 +44,15 @@ function updateList(req, res) {
     })
 }
 
+function removeMovie(req, res) {
+    List.findById(req.params.id, (err, list) => {
+        list.movies.remove(req.params.movieId);
+        list.save(() => {
+            res.redirect('/users/' + req.user.id + '/lists/' + list.id);
+        })
+    })
+}
+
 function deleteList(req, res) {
     List.findById(req.params.id, function(err, list) {
         list.remove();
@@ -93,7 +102,9 @@ function addToList(req, res) {
                                     title: movieData.title, 
                                     overview: movieData.overview,
                                     release_date: movieData.release_date,
-                                    vote_average: movieData.vote_average});
+                                    vote_average: movieData.vote_average,
+                                    poster_path: movieData.poster_path,
+                                    backdrop_path: movieData.backdrop_path});
 
                 movieData.genres.forEach(function(genre) {
                     movie.genres.push(genre.name);
@@ -129,5 +140,6 @@ module.exports = {
     update: updateList,
     delete: deleteList,
     new: newList,
-    add: addToList
+    add: addToList,
+    removeMovie
 }
