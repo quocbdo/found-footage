@@ -1,6 +1,6 @@
 <%- include ../_partials/header.ejs %>
-<h2><%= list.name %></h2>
-<h3><%= list.summary %></h3>
+<h2 id="list-name"><%= list.name %></h2>
+<h3 id="list-summary"><%= list.summary %></h3>
 <h5>Created by: <%= user.name  %></h5>
 <h4>My Picks</h4>
     <% if(list.movies) %>
@@ -18,5 +18,55 @@
   <form action="/users/<%= user.id %>/lists/<%= list.id %>?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-lg btn-danger"> Remove List </button>
   </form>
+<script>
+    $(document).ready(function() {
+    $('#list-name').click(function(){
+        $(this).replaceWith(`<input id="input-name" type="text" name="name" value="<%= list.name %>">`);
+        $('#input-name').on("blur", function(e){
+            console.log('on blur')
+            var newName = $('#input-name').val();
+            let xBody = JSON.stringify({
+                name: newName, 
+                userId: "<%= user.id %>"
+            })
+
+            console.log(xBody)
+            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',  // needs an id
+                {
+                    method: "POST", 
+                    body: xBody, // for some reason this body isn't getting passed?
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Content-Type': 'application/JSON'
+                    })
+                })
+
+        })
+    })
+    $('#list-summary').click(function(){
+        $(this).replaceWith(`<input id="input-summary" type="text area" name="name" value="<%= list.summary %>">`);
+        $('#input-summary').on("blur", function(e){
+            console.log('on blur')
+            var newSummary = $('#input-summary').val();
+            let xBody = JSON.stringify({
+                summary: newSummary, 
+                userId: "<%= user.id %>"
+            })
+
+            console.log(xBody)
+            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',  // needs an id
+                {
+                    method: "POST", 
+                    body: xBody, // for some reason this body isn't getting passed?
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Content-Type': 'application/JSON'
+                    })
+                })
+
+        })
+    })
+})    
+</script>
 
 <%- include ../_partials/footer.ejs %>

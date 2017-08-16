@@ -1,4 +1,5 @@
 $(document).ready(function() {
+<<<<<<< HEAD
     $('select').material_select();
 
     var chip = {
@@ -39,3 +40,7 @@ $(document).ready(function() {
         }
     });   
 });
+=======
+  $('select').material_select();
+})
+>>>>>>> 3e901b5a30be666b8e09db7c4015b94d896fed67
