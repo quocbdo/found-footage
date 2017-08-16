@@ -10,5 +10,7 @@ router.post('/addtolist', usersListCtrl.add);
 
 router.post('/:id', usersListCtrl.update);
 router.delete('/:id', usersListCtrl.delete);
+router.delete('/:id/:movieId', usersListCtrl.removeMovie);
+
 
 module.exports = router;
