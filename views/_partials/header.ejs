@@ -18,24 +18,31 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'>
   </head>
   <body>
       <nav>
         <div class="nav-wrapper">
-          <a href="/" ><img class="brand-logo center" src="http://i.imgur.com/iE90UkX.png"></a>
+          <!-- <div class="container"> -->
+            <a href="/" ><img class="brand-logo left" src="http://i.imgur.com/iE90UkX.png"></a>
+          <!-- </div> -->
           <ul id="nav-mobile" class="right">
             <li>
               <form method="post" action="/movies/search">
                 <div class>
                   <input type="text" name="search"
-                    placeholder="Search Movie">
+                  placeholder="Search Movie">
                 </div>
-              </form>
-            </li>
+              </li>
+              <!-- <li>
+                <button class="search" type="submit" value="search"> <i class="material-icons">search</i></button>
+              </li> -->
+            </form>
+            <li><a href="/movies">Movies</a></li>
+            <li><a href="/lists">Lists</a></li>
             <% if (user) { %>
-              <li><a href="/logout">Logout</a></li>
               <li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
+              <li><a href="/logout">Logout</a></li>
             <% } else { %>
               <li><a href="/auth/google">Login with Google</a></li>
             <% } %>
