@@ -1,8 +1,4 @@
 var List = require('../models/list');
-var Movie = require('../models/movie');
-var User = require('../models/user');
-var request = require('request');
-const rootURL = 'https://api.themoviedb.org/3/';
 
 function random(req, res) {
     List.find({}, (err, lists) => {

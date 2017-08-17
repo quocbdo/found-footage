@@ -1,7 +1,5 @@
 var List = require('../models/list');
 var Movie = require('../models/movie');
-var request = require('request');
-const rootURL = 'https://api.themoviedb.org/3/';
 
 function index(req, res) {
   List.find({}).populate('user movies').exec((err, lists) => {
