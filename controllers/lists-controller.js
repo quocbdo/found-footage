@@ -10,12 +10,24 @@ function index(req, res) {
 }
 
 function show(req, res) {
-  List.findById(req.params.id).populate("user movies").exec((err, list) => {
+  List.findById(req.params.id).populate('user movies comments.user').exec((err, list) => {
     res.render('lists/show', {list, user: req.user});
   });
 }
 
+function createComment(req, res) {
+    List.findById(req.params.id, (err, list) => {
+      list.comments.push({content: req.body.content, user: req.user.id});
+      list.save(() => {
+        console.log(list)
+          res.redirect('/lists/' + list.id)
+      });
+    });
+}
+
+
 module.exports = {
   index,
-  show
+  show,
+  createComment
 }

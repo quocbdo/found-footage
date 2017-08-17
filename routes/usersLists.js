@@ -16,5 +16,4 @@ router.post('/:id', isLoggedIn, usersListCtrl.update);
 router.delete('/:id', isLoggedIn, usersListCtrl.delete);
 router.delete('/:id/:movieId', isLoggedIn, usersListCtrl.removeMovie);
 
-
 module.exports = router;
