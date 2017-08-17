@@ -13,7 +13,12 @@ nav {
 .brand-logo {
   width: 220px;
   top: 5px;
+  left: 10px;
 }
+
+/* .search {
+  background-color: #37474f;
+} */
 
 .slider {
   font-family: 'Abel', sans-serif;  
