@@ -2,6 +2,7 @@
 
 <h1><%= movieData.title %></h1>
 <img src="https://image.tmdb.org/t/p/w150/<%= movieData.poster_path %>">
+  <% if (user) { %>
   <form action="/users/<%= user._id %>/lists/addtolist" method="POST">
     <select name="list">
       <% user.lists.forEach(function(list){ %>
@@ -11,6 +12,7 @@
     <input type="hidden" name="movieId" value="<%= movieData.id %>">
     <button type="submit">Add to List</button>
   </form>
+  <% } %>
 
     
 <h6>Release Date:</h6>

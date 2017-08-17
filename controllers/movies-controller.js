@@ -15,21 +15,22 @@ function index(req, res) {
 }
 
 function show(req, res) {
+    console.log(req.user);
     var options =  {
         url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY + '&append_to_response=credits'
     };
     request(options, function(err, response, body) {
         var movieData = JSON.parse(body);
-        User.findById(req.user.id).populate("lists").exec(function(err, user){
-            console.log(user);
-            res.render('movies/show', {movieData, user: user});
-        
-        })
+        if (req.user) {
+            User.findById(req.user.id).populate("lists").exec(function(err, user){
+                console.log(user);
+                res.render('movies/show', {movieData, user: user});
+            
+            })
+        } else {
+            res.render('movies/show', {movieData, user: null});
+        }
     });
-}
-
-function create(req, res) {
-
 }
 
 function search(req, res) {
@@ -46,6 +47,5 @@ function search(req, res) {
 module.exports = {
     index,
     show,
-    create,
     search
 }

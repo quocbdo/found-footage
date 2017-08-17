@@ -2,10 +2,14 @@
 
 <h1>Search Results</h1>
 
-<% movieSearch.forEach(function(movie){ %>
-  <a href="/movies/<%=movie.id%>">
-  <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
-  <h6><%= movie.title %></h6></a>
-<% }) %>
+<% if (movieSearch) { %>
+  <% movieSearch.forEach(function(movie){ %>
+    <a href="/movies/<%=movie.id%>">
+    <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
+    <h6><%= movie.title %></h6></a>
+  <% }) %>
+<% } else { %>
+  <h4>No movies match search</h4>
+<% } %>
 
 <%- include ../_partials/footer.ejs %>
