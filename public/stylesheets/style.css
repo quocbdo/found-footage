@@ -6,6 +6,10 @@ a {
   color: #00B7FF;
 }
 
+nav {
+  background-color: #37474f;
+}
+
 .brand-logo {
   width: 220px;
   top: 5px;

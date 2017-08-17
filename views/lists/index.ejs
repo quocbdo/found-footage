@@ -2,10 +2,11 @@
 
 <h2>Lists</h2>
 
-<div>
-<% lists.forEach(function(list) { %>
-<div class="row">
-    <div class="col s6 offset-s6">
+<% lists.forEach(function(list, i) { %>
+  <% if (i % 2 === 0) { %>
+    <div class="row">
+    <% } %>
+      <div class="col s6">
         <div class="card">
           <div class="card-image">
             <% if (list.movies.length) { %>
@@ -23,8 +24,9 @@
           </div>
         </div>
     </div>
+  <% if (i % 2 === 1) { %>
   </div>
-</div>
-  <% }) %>
+  <% } %>
+<% }) %>
 
 <%- include ../_partials/footer.ejs %>
