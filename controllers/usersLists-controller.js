@@ -36,7 +36,7 @@ function newList(req, res) {
 function updateList(req, res) {
     List.findByIdAndUpdate(req.params.id, req.body, (err, list) => {
         res.redirect('/users/' + req.body.userId + '/lists/' + list.id);
-    })
+    });
 }
 
 function removeMovie(req, res) {
@@ -44,8 +44,8 @@ function removeMovie(req, res) {
         list.movies.remove(req.params.movieId);
         list.save(() => {
             res.redirect('/users/' + req.user.id + '/lists/' + list.id);
-        })
-    })
+        });
+    });
 }
 
 function deleteList(req, res) {
