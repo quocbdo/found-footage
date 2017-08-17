@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var usersListCtrl = require('../controllers/usersLists-controller')
+var usersListCtrl = require('../controllers/usersLists-controller');
 
-router.get('/', usersListCtrl.index);
-router.get('/new', usersListCtrl.new);
-router.get('/:id', usersListCtrl.show);
-router.post('/', usersListCtrl.create);
-router.post('/addtolist', usersListCtrl.add);
-router.post('/:id', usersListCtrl.update);
-router.post('/:id/comments', usersListCtrl.createComment)
-router.delete('/:id', usersListCtrl.delete);
-router.delete('/:id/:movieId', usersListCtrl.removeMovie);
+function isLoggedIn(req, res, next) {
+    if ( req.isAuthenticated() ) return next();
+    res.redirect('/auth/google');
+  }
 
+router.get('/', isLoggedIn, usersListCtrl.index);
+router.get('/new', isLoggedIn, usersListCtrl.new);
+router.get('/:id', isLoggedIn, usersListCtrl.show);
+router.post('/', isLoggedIn, usersListCtrl.create);
+router.post('/addtolist', isLoggedIn, usersListCtrl.add);
+router.post('/:id', isLoggedIn, usersListCtrl.update);
+router.delete('/:id', isLoggedIn, usersListCtrl.delete);
+router.delete('/:id/:movieId', isLoggedIn, usersListCtrl.removeMovie);
 
 module.exports = router;

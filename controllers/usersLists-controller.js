@@ -34,11 +34,6 @@ function newList(req, res) {
 }
 
 function updateList(req, res) {
-    console.log('\n\nhello!')
-    console.log('req.params.id =', req.params.id)
-    console.log('req.body =', req.body)
-    
-    // console.log(req.body);
     List.findByIdAndUpdate(req.params.id, req.body, (err, list) => {
         res.redirect('/users/' + req.body.userId + '/lists/' + list.id);
     })
@@ -65,18 +60,7 @@ function deleteList(req, res) {
     });
 }
 
-function createComment(req, res) {
-    List.findById(req.params.id, (err, list) => {
-        list.comments.push({content: req.body.content, user: req.user.id});
-        list.save(() => {
-            res.redirect('lists/show',{list, user: req.user})
-        });
-    });
-}
 function addToList(req, res) {
-    console.log('addToList is called')
-    var twice = false;
-
     var options =  {
         url: rootURL + 'movie/' + req.body.movieId + '?api_key=' + process.env.TMDB_KEY + '&append_to_response=credits'
     };
@@ -87,12 +71,10 @@ function addToList(req, res) {
 
         var checkDb = new Promise(function(resolve, reject) {
             Movie.find({tmdb: req.body.movieId}, (err, movies) => {
-                console.log(movies);
                 if (movies.length > 0) {
                     List.findById(req.body.list, (err, list) => {
                         list.movies.push(movies[0]._id);
                         list.save(() => {
-                            console.log('Just add to list');
                             res.redirect('/movies/' + req.body.movieId);
                             resolve(false);
                         });
@@ -105,7 +87,6 @@ function addToList(req, res) {
         
         checkDb.then(function(newMovie) {
             if(newMovie) {
-                console.log("Save and add to list");
                 var movie = new Movie({tmdb: movieData.id,
                                     title: movieData.title, 
                                     overview: movieData.overview,
@@ -150,6 +131,5 @@ module.exports = {
     delete: deleteList,
     new: newList,
     add: addToList,
-    removeMovie,
-    createComment
+    removeMovie
 }

@@ -1,8 +1,8 @@
-<%- include ./_partials/header.ejs %>
+<%- include ../_partials/header.ejs %>
 
 <h2 id="list-name"><%= list.name %></h2>
 <h3 id="list-summary"><%= list.summary %></h3>
-<h5>Created by: <%= list.user.name %></h5>
+<h5>Created by: <%= list.user.name  %></h5>
 <h4>My Picks</h4>
     <% if(list.movies) %>
         <% list.movies.forEach(function(movie) { %>
@@ -16,4 +16,16 @@
             <h6>Release Date: <%= movie.release_date %></h6>
         <% }) %>
 
-<%- include ./_partials/footer.ejs %>
+<form action="/lists/<%= list.id %>/comments" method="post">
+    <div class="form-group">
+    <input type="text" name="content" class="form-control" placeholder="Comment">
+    </div>
+</form>
+<h5>Comments</h5>
+    <% list.comments.forEach(function(comment) { %>
+        <div><%= comment.content %><br>
+        <%= comment.user.name %>
+        <%= comment.createdAt %>
+        <% }) %>
+        </div>
+    <%- include ../_partials/footer.ejs %>
