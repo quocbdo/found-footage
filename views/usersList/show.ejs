@@ -1,6 +1,9 @@
 <%- include ../_partials/header.ejs %>
-<h4 id="list-name"><%= list.name %></h4>
-<h6 id="list-summary"><%= list.summary %></h6>
+<div id="edit-info">
+    <h4 id="list-name"><span><%= list.name %></span></h4>
+    <p id="list-summary"><span><%= list.summary %></span></p>
+</div>
+<h6><%= list.genres[0] %></h6>
 <h6>Created by: <%= user.name  %></h6>
     <% if(list.movies) %>
         <% list.movies.forEach(function(movie) { %>
@@ -23,56 +26,42 @@
 
 <script>
     $(document).ready(function() {
-        $('#list-name').click(function(){
-            $(this).replaceWith(`<input id="input-name" type="text" name="name" value="<%= list.name %>">`);
-            $('#input-name').on("keypress blur", function(evt){
-                if (evt.keyCode === 13 || evt.type === 'blur') updateListName();
-            })
-        })
+        $('#edit-info').on('click', 'h4 span', {field: "name"}, editItem);
+        $('#edit-info').on('click', 'p span', {field: "summary"}, editItem);
 
-        $('#list-summary').click(function(){
-            $(this).replaceWith(`<textarea id="input-summary" class="materialize-textarea" type="text" name="name" value="<%= list.summary %>"><%= list.summary %></textarea>`);
-            $('#input-summary').on("blur", function(evt){
-                if (evt.keyCode === 13 || evt.type === 'blur') updateSummary();
-            })
-        })
+        $('#edit-info').on('keypress blur focusout', '#name', {field: "name"}, function(e) {
+            if (e.type === 'blur' || e.type === 'focusout' || e.keyCode === 13) updateItem(e);
+        });
+        $('#edit-info').on('keypress blur focusout', '#summary', {field: "summary"}, function(e) {
+            if (e.type === 'blur' || e.type === 'focusout' || e.keyCode === 13) updateItem(e);
+        });
+
+        function editItem(e) {
+            var $item = $(e.target);
+            $item.html(`<input id="${e.data.field}" value="${$item.html()}">`);
+        }
+
+        function updateItem(e) {
+            var $item = $(e.target.parentElement);
+            $item.html(e.target.value);
+            var newItem = e.target.value;
+            var field = e.data.field;
+            let xBody = { 
+                userId: "<%= user.id %>"
+            };
+            xBody[field] = newItem;
+            xBody = JSON.stringify(xBody);
+            fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
+                {
+                    method: "POST", 
+                    body: xBody,
+                    credentials: 'include',
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    })
+                })
+        }
     })
-
-    function updateListName() {
-        var newName = $('#input-name').val();
-        let xBody = JSON.stringify({
-            name: newName, 
-            userId: "<%= user.id %>"
-        })
-        fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
-            {
-                method: "POST", 
-                body: xBody,
-                credentials: 'include',
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            })
-        $('#input-name').replaceWith(`<h2 id="list-name">${newName}</h2>`)
-    }
-
-    function updateSummary() {
-        var newSummary = $('#input-summary').val();
-        let xBody = JSON.stringify({
-            summary: newSummary, 
-            userId: "<%= user.id %>"
-        })
-        fetch('/users/<%= user.id %>>/lists/<%= list.id %>',
-            {
-                method: "POST", 
-                body: xBody,
-                credentials: 'include',
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            })
-        $('#input-summary').replaceWith(`<h3 id="list-summary">${newSummary}</h3>`)
-    }
 </script>
 
 <%- include ../_partials/footer.ejs %>
