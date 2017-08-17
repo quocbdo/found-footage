@@ -6,6 +6,11 @@ a {
   color: #00B7FF;
 }
 
+.brand-logo {
+  width: 220px;
+  top: 5px;
+}
+
 .slider {
   font-family: 'Abel', sans-serif;  
 }
