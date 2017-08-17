@@ -7,8 +7,8 @@ router.get('/new', usersListCtrl.new);
 router.get('/:id', usersListCtrl.show);
 router.post('/', usersListCtrl.create);
 router.post('/addtolist', usersListCtrl.add);
-
 router.post('/:id', usersListCtrl.update);
+router.post('/:id/comments', usersListCtrl.createComment)
 router.delete('/:id', usersListCtrl.delete);
 router.delete('/:id/:movieId', usersListCtrl.removeMovie);
 

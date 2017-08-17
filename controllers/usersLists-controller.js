@@ -65,6 +65,14 @@ function deleteList(req, res) {
     });
 }
 
+function createComment(req, res) {
+    List.findById(req.params.id, (err, list) => {
+        list.comments.push({content: req.body.content, user: req.user.id});
+        list.save(() => {
+            res.redirect('lists/show',{list, user: req.user})
+        });
+    });
+}
 function addToList(req, res) {
     console.log('addToList is called')
     var twice = false;
@@ -132,6 +140,8 @@ function addToList(req, res) {
     });
 }
 
+
+
 module.exports = {
     index,
     show,
@@ -140,5 +150,6 @@ module.exports = {
     delete: deleteList,
     new: newList,
     add: addToList,
-    removeMovie
+    removeMovie,
+    createComment
 }
