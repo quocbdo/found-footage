@@ -26,6 +26,9 @@
         <div><%= comment.content %><br>
         <%= comment.user.name %>
         <%= comment.createdAt %>
+        <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
+        </form>
         <% }) %>
         </div>
     <%- include ../_partials/footer.ejs %>

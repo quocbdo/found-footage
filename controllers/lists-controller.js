@@ -25,9 +25,21 @@ function createComment(req, res) {
     });
 }
 
+function deleteComment(req, res) {
+  List.findById(req.params.id, (err, list) => {
+    console.log(req.params.id);
+    list.comments.remove(req.params.commentId);
+    console.log(req.params.commentId);
+    list.save(() => {
+      res.redirect('/lists/' + list.id)
+    });
+  });
+}
+
 
 module.exports = {
   index,
   show,
-  createComment
+  createComment,
+  deleteComment
 }
