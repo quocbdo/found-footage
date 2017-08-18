@@ -35,12 +35,13 @@
                 </div>
                 <% } %>
             <% }) %>
-
+            <% if (user) { %>
             <form action="/lists/<%= list.id %>/comments" method="post">
                 <div class="form-group">
                     <input type="text" name="content" class="form-control" placeholder="Comment">
                 </div>
             </form>
+            <% } %>
             <h5>Comments</h5>
             <% list.comments.forEach(function(comment) { %>
                 <div class="comments">
@@ -48,10 +49,12 @@
                     <br>
                     <%= comment.user.name %>
                     <%= comment.createdAt.toString().replace(' GMT-0700 (PDT)', '')%>
-                    <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
-                        <br>
-                    </form>
+                    <% if (user && user.id === comment.user.id ) { %> 
+                        <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
+                            <br>
+                        </form>
+                    <% } %>
                 </div>
             <% }) %>
         <% } %>

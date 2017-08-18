@@ -8,8 +8,13 @@ function index(req, res) {
 }
 
 function show(req, res) {
+  if (req.user){
+    var user = req.user
+  } else {
+    var user = null
+  };
   List.findById(req.params.id).populate('user movies comments.user').exec((err, list) => {
-    res.render('lists/show', {list, user: req.user});
+    res.render('lists/show', {list, user: user});
   });
 }
 
