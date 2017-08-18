@@ -30,11 +30,11 @@
                   <a href="/users/<%= user._id %>/lists/<%= list.id %>"><span class="card-title"><%= list.name %></span></a>
               </div>
               <div class="card-content">
-                <p><%= list.summary %></p>
+                <p class="truncate"><%= list.summary %></p>
               </div>
               <div class="card-action">
                 <form action="/users/<%= user.id %>/lists/<%= list.id %>?_method=DELETE" method="POST">
-                  <button type="submit" class="btn btn-lg btn-danger"> Remove List </button>
+                  <button type="submit" class="btn btn-lg btn-danger red darken-2"> Remove List </button>
                 </form>
               </div>
             </div>

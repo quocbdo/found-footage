@@ -21,12 +21,11 @@
                         <div class="card-image">
                             <a href="/movies/<%=movie.tmdb%>">
                                 <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
-                                <h5><%= movie.title %></h5>
+                                <h5 class="truncate"><%= movie.title %></h5>
                             </a>
-                            <p>Synopsis: <%= movie.overview %></p>
                             <h6>Genre:</h6>
                             <% var movieGenres = movie.genres.join(', ') %>
-                            <h6><%= movieGenres %></h6>
+                            <h6 class="truncate"><%= movieGenres %></h6>
                             <h6>Release Date: <%= movie.release_date %></h6>
                         </div>
                     </div>
@@ -51,7 +50,7 @@
                     <%= comment.createdAt.toString().replace(' GMT-0700 (PDT)', '')%>
                     <% if (user && user.id === comment.user.id ) { %> 
                         <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
+                            <button type="submit" class="btn btn-lg btn-danger red darken-2" onclick="return confirm('Delete Comment?');"><i class=" med material-icons">delete</i></button>
                             <br>
                         </form>
                     <% } %>
