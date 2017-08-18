@@ -28,6 +28,14 @@ nav {
   font-size: 50pt;
 }
 
+.comments {
+  padding: 10px auto;
+  font-size: 20px;
+  background-color: lightblue;
+  margin: 30px 600px 30px 0px;
+  border-radius: 10px
+}
+
 .sidenav {
   margin-top: 25px;
 }
