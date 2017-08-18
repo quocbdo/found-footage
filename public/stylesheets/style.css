@@ -49,13 +49,17 @@ nav {
   font-size: 50pt;
 }
 
-.comments {
+.edit-icon {
+  font-size: 25px;
+}
+
+/* .comments {
   padding: 10px auto;
-  font-size: 20px;
+  font-size: 15px;
   background-color: lightblue;
   margin: 30px 600px 30px 0px;
   border-radius: 10px
-}
+} */
 
 .sidenav {
   margin-top: 25px;
