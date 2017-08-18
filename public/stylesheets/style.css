@@ -1,5 +1,12 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 a {
@@ -14,6 +21,20 @@ nav {
   width: 220px;
   top: 5px;
   left: 10px;
+}
+
+.page-footer {
+  background-color: #37474f;
+}
+
+.footer-logo {
+  height: 40px;
+  position: relative;
+  bottom: 50px;
+}
+
+.text-lighten-6 {
+  font-size: 11px;
 }
 
 /* .search {
