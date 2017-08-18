@@ -15,7 +15,6 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    console.log(req.user);
     var options =  {
         url: rootURL + 'movie/' + req.params.id + '?api_key=' + process.env.TMDB_KEY + '&append_to_response=credits'
     };
@@ -23,7 +22,6 @@ function show(req, res) {
         var movieData = JSON.parse(body);
         if (req.user) {
             User.findById(req.user.id).populate("lists").exec(function(err, user){
-                console.log(user);
                 res.render('movies/show', {movieData, user: user});
             
             })
