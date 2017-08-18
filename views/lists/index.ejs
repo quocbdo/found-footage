@@ -1,6 +1,34 @@
 <%- include ../_partials/header.ejs %>
 
-<h5>Featured Lists</h5>
+<div class="row">
+  <div class="col s4">
+    <h5>Featured Lists</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s4">
+    <form action="/lists" method="post">
+      <select name="genres" onchange="this.form.submit()">
+          <option value="General" <%= selected = genre === "General" ? "selected" : "" %>>General</option>
+          <option value="Action" <%= selected = genre === "Action" ? "selected" : "" %>>Action</option>
+          <option value="Animation" <%= selected = genre === "Animation" ? "selected" : "" %>>Animation</option>
+          <option value="Comedy" <%= selected = genre === "Comedy" ? "selected" : "" %>>Comedy</option>
+          <option value="Documentary" <%= selected = genre === "Documentary" ? "selected" : "" %>>Documentary</option>
+          <option value="Drama" <%= selected = genre === "Drama" ? "selected" : "" %>>Drama</option>
+          <option value="Family" <%= selected = genre === "Family" ? "selected" : "" %>>Family</option>
+          <option value="Fantasy" <%= selected = genre === "Fantasy" ? "selected" : "" %>>Fantasy</option>
+          <option value="History" <%= selected = genre === "History" ? "selected" : "" %>>History</option>
+          <option value="Horror" <%= selected = genre === "Horror" ? "selected" : "" %>>Horror</option>
+          <option value="Music" <%= selected = genre === "Music" ? "selected" : "" %>>Music</option>
+          <option value="Romance" <%= selected = genre === "Romance" ? "selected" : "" %>>Romance</option>
+          <option value="Sci-Fi" <%= selected = genre === "Sci-Fi" ? "selected" : "" %>>Sci-Fi</option>
+          <option value="Thriller" <%= selected = genre === "Thriller" ? "selected" : "" %>>Thriller</option>
+          <option value="War" <%= selected = genre === "War" ? "selected" : "" %>>War</option>
+      </select>
+    </form>
+  </div>
+</div>
 
 <% lists.forEach(function(list, i) { %>
   <% if (i % 2 === 0) { %>

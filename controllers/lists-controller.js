@@ -3,7 +3,7 @@ var Movie = require('../models/movie');
 
 function index(req, res) {
   List.find({}).populate('user movies').exec((err, lists) => {
-    res.render('lists/index', {lists, user: req.user}); 
+    res.render('lists/index', {lists, user: req.user, genre: null}); 
   });
 }
 
@@ -35,7 +35,15 @@ function deleteComment(req, res) {
 }
 
 function filter(req, res) {
-
+  if(req.body.genres === "General") {
+    List.find({}).populate('user movies').exec((err, lists) => {
+      res.render('lists/index', {lists, user: req.user, genre: req.body.genres});
+    })
+  } else {
+    List.find({genres: req.body.genres}).populate('user movies').exec((err, lists) => {
+      res.render('lists/index', {lists, user: req.user, genre: req.body.genres});
+    });
+  }
 }
 
 
