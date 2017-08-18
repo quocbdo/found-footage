@@ -2,62 +2,63 @@
 
 <br>
 <div class="row">
-    <div class="col s12 m3" style="border: 1px solid red;">
-        Hello
-    </div>
-    <div class="col s12 m9" style="border: 1px solid red;">
-        Goodbye
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col s3 ">
-        <h2 id="list-name"><%= list.name %></h2>
-        <h5 id="list-summary"><%= list.summary %></h5>
+    <div class="col s12 m3">
+        <h4 id="list-name"><%= list.name %></h4>
         <h6>Created by: <%= list.user.name  %></h6>
-    </div> 
-</div>
-<h4>My Picks</h4>
-
-    <% if(list.movies) %>
-        <% list.movies.forEach(function(movie, i) { %>
-        <% if (i % 4 === 0) { %>
-        <div class="row">
-        <% } %>
-        <div class="col s3">
-            <div class="card">
-                <div class="card-image">
-                    <a href="/movies/<%=movie.tmdb%>">
-                    <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
-                    <h4><%= movie.title %></h4></a>
-                    <p>Synopsis: <%= movie.overview %></p>
-                    <h6>Genre:</h6>
-                    <% var movieGenres = movie.genres.join(', ') %>
-                    <h6><%= movieGenres %></h6>
-                    <h6>Release Date: <%= movie.release_date %></h6>
-                </div>
-            </div>
-        </div>
-        <% if (i % 4 === 4) { %>
-        </div>
-        <% } %>
-        <% }) %>
-
-<form action="/lists/<%= list.id %>/comments" method="post">
-    <div class="form-group">
-    <input type="text" name="content" class="form-control" placeholder="Comment">
+        <h7 id="list-summary"><%= list.summary %></h7>
     </div>
-</form>
-<h5>Comments</h5>
-    <% list.comments.forEach(function(comment) { %>
-        <div><%= comment.content %><br>
-        <%= comment.user.name %>
-        <%= comment.createdAt %>
-        <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
-        </form>
-        <% }) %>
-        </div>
-    <%- include ../_partials/footer.ejs %>
+    <div class="col s12 m9">
+        
+        <h4>My Picks</h4>
+
+        <% if(list.movies) { %>
+            <% list.movies.forEach(function(movie, i) { %>
+                <% if (i % 4 === 0) { %>
+                <div class="row">
+                <% } %>
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="/movies/<%=movie.tmdb%>">
+                                <img src="https://image.tmdb.org/t/p/w150/<%= movie.poster_path%>">
+                                <h5><%= movie.title %></h5>
+                            </a>
+                            <p>Synopsis: <%= movie.overview %></p>
+                            <h6>Genre:</h6>
+                            <% var movieGenres = movie.genres.join(', ') %>
+                            <h6><%= movieGenres %></h6>
+                            <h6>Release Date: <%= movie.release_date %></h6>
+                        </div>
+                    </div>
+                </div>
+                <% if (i % 4 === 4) { %>
+                </div>
+                <% } %>
+            <% }) %>
+
+            <form action="/lists/<%= list.id %>/comments" method="post">
+                <div class="form-group">
+                    <input type="text" name="content" class="form-control" placeholder="Comment">
+                </div>
+            </form>
+            <h5>Comments</h5>
+            <% list.comments.forEach(function(comment) { %>
+                <div class="comments">
+                    <%= comment.content %>
+                    <br>
+                    <%= comment.user.name %>
+                    <%= comment.createdAt.toString().replace(' GMT-0700 (PDT)', '')%>
+                    <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
+                        <br>
+                    </form>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</div>
+
+
+
+    
+<%- include ../_partials/footer.ejs %>
