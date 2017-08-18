@@ -21,6 +21,7 @@ var users = require('./routes/users');
 var movies = require('./routes/movies');
 var lists = require('./routes/lists');
 var usersLists = require('./routes/usersLists');
+var api = require('./routes/api');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/users', users);
 app.use('/movies', movies);
 app.use('/lists', lists);
 app.use('/users/:id/lists', usersLists);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
