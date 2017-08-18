@@ -1,11 +1,9 @@
 var List = require('../models/list');
 var Movie = require('../models/movie');
-var request = require('request');
-const rootURL = 'https://api.themoviedb.org/3/';
 
 function index(req, res) {
   List.find({}).populate('user movies').exec((err, lists) => {
-    res.render('lists/index', {lists, user: req.user}); 
+    res.render('lists/index', {lists, user: req.user, genre: null}); 
   });
 }
 
@@ -36,10 +34,23 @@ function deleteComment(req, res) {
   });
 }
 
+function filter(req, res) {
+  if(req.body.genres === "General") {
+    List.find({}).populate('user movies').exec((err, lists) => {
+      res.render('lists/index', {lists, user: req.user, genre: req.body.genres});
+    })
+  } else {
+    List.find({genres: req.body.genres}).populate('user movies').exec((err, lists) => {
+      res.render('lists/index', {lists, user: req.user, genre: req.body.genres});
+    });
+  }
+}
+
 
 module.exports = {
   index,
   show,
   createComment,
-  deleteComment
+  deleteComment,
+  filter
 }

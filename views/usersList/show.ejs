@@ -3,7 +3,26 @@
     <h4 id="list-name"><span><%= list.name %></span></h4>
     <p id="list-summary"><span><%= list.summary %></span></p>
 </div>
-<h6><%= list.genres[0] %></h6>
+<form action="/users/<%= user.id %>/lists/<%= list.id %>" method="POST">
+    <select name="genres" onchange="this.form.submit()">
+        <option value="General" <%= selected = list.genres[0] === "General" ? "selected" : "" %>>General</option>
+        <option value="Action" <%= selected = list.genres[0] === "Action" ? "selected" : "" %>>Action</option>
+        <option value="Animation" <%= selected = list.genres[0] === "Animation" ? "selected" : "" %>>Animation</option>
+        <option value="Comedy" <%= selected = list.genres[0] === "Comedy" ? "selected" : "" %>>Comedy</option>
+        <option value="Documentary" <%= selected = list.genres[0] === "Documentary" ? "selected" : "" %>>Documentary</option>
+        <option value="Drama" <%= selected = list.genres[0] === "Drama" ? "selected" : "" %>>Drama</option>
+        <option value="Family" <%= selected = list.genres[0] === "Family" ? "selected" : "" %>>Family</option>
+        <option value="Fantasy" <%= selected = list.genres[0] === "Fantasy" ? "selected" : "" %>>Fantasy</option>
+        <option value="History" <%= selected = list.genres[0] === "History" ? "selected" : "" %>>History</option>
+        <option value="Horror" <%= selected = list.genres[0] === "Horror" ? "selected" : "" %>>Horror</option>
+        <option value="Music" <%= selected = list.genres[0] === "Music" ? "selected" : "" %>>Music</option>
+        <option value="Romance" <%= selected = list.genres[0] === "Romance" ? "selected" : "" %>>Romance</option>
+        <option value="Sci-Fi" <%= selected = list.genres[0] === "Sci-Fi" ? "selected" : "" %>>Sci-Fi</option>
+        <option value="Thriller" <%= selected = list.genres[0] === "Thriller" ? "selected" : "" %>>Thriller</option>
+        <option value="War" <%= selected = list.genres[0] === "War" ? "selected" : "" %>>War</option>
+    </select>
+    <input type="hidden" name="userId" value="<%= user.id %>">
+  </form>
 <h6>Created by: <%= user.name  %></h6>
     <% if(list.movies) %>
         <% list.movies.forEach(function(movie) { %>
