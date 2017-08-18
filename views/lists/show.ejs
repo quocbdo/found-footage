@@ -51,7 +51,7 @@
                     <%= comment.createdAt.toString().replace(' GMT-0700 (PDT)', '')%>
                     <% if (user && user.id === comment.user.id ) { %> 
                         <form action="/lists/<%= list.id %>/comments/<%= comment.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-lg btn-danger"> Delete Comment </button>
+                            <button type="submit" class="btn btn-lg btn-danger red darken-2" onclick="return confirm('Delete Comment?');"><i class=" med material-icons">delete</i></button>
                             <br>
                         </form>
                     <% } %>

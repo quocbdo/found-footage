@@ -45,7 +45,7 @@
             <a href="/lists/<%= list.id %>"><span class="card-title"><%= list.name %></span></a>
           </div>
           <div class="card-content">
-            <p><%= list.summary %></p>
+            <p class="truncate"><%= list.summary %></p>
           </div>
           <div class="card-action">
             <p>Created by: <%= list.user.name %></p>
