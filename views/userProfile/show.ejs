@@ -9,8 +9,11 @@
   </div>
 </div>
 
-
-<h6>My Movie Lists</h6>
+<div class="row">
+  <div class="col s4">
+    <h6>My Movie Lists</h6>
+  </div>
+</div>
 <% if (user.lists.length) { %>
   <% user.lists.forEach(function(list, i) { %>
     <% if (i % 2 === 0) { %>
