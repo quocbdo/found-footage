@@ -29,12 +29,14 @@ Welcome to Found Footage! Just like what Forrest said about chocolates, you neve
 
 ### RESTful API
 #### Returns a JSON of all the lists
-
-https://found-footage.herokuapp.com/api/lists
+* HTTP verb: Get 
+* Path: /api/lists
+* https://found-footage.herokuapp.com/api/lists
 
 #### Returns a JSON of a single list
-
-https://found-footage.herokuapp.com/api/lists/:id
+* HTTP verb : Get
+* Path /api/lists/:id
+* https://found-footage.herokuapp.com/api/lists/:id
 
 ## Unresolved problems
 
