@@ -34,10 +34,15 @@ function deleteComment(req, res) {
   });
 }
 
+function filter(req, res) {
+
+}
+
 
 module.exports = {
   index,
   show,
   createComment,
-  deleteComment
+  deleteComment,
+  filter
 }
