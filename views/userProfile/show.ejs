@@ -5,7 +5,7 @@
     <h5><%= user.name %></h5>
       <div class="divider"></div>
         <p>Create New Movie List</p>
-        <a href="/users/<%= user._id %>/lists/new" class="btn-floating btn-large waves-effect waves-light red"><class="material-icons">+</a>
+        <a href="/users/<%= user._id %>/lists/new" class="btn-floating btn-large waves-effect waves-light teal accent-4"><class="material-icons">+</a>
   </div>
 </div>
 
@@ -34,7 +34,7 @@
               </div>
               <div class="card-action">
                 <form action="/users/<%= user.id %>/lists/<%= list.id %>?_method=DELETE" method="POST">
-                  <button type="submit" class="btn btn-lg btn-danger red darken-2"> Remove List </button>
+                  <button type="submit" class="btn btn-lg btn-danger red darken-2" onclick="return confirm('Remove Movie?');"> Remove List </button>
                 </form>
               </div>
             </div>
